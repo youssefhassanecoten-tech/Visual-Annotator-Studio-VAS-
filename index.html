@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Visual Annotator Studio (VAS)</title>
+<meta name="description" content="VAS — Visual Annotator Studio: draw bounding-box annotations in the browser, export JSON/CSV, RU/EN, dark mode, versioned changelog and onboarding tutorial." />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="mark">VAS</div>
+    <div class="brand-text">
+      <h1 data-i18n="appName">Visual Annotator Studio</h1>
+      <p data-i18n="tagline">Draw and export bounding-box annotations.</p>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <div class="lang-pill">
+      <button type="button" class="lang-choice active" data-lang="en">EN</button>
+      <button type="button" class="lang-choice" data-lang="ru">RU</button>
+    </div>
+    <button type="button" class="btn ghost" id="theme-btn">Night</button>
+    <a id="version-badge" class="version-badge" href="changelog.html" title="Open changelog">v1.0.0</a>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="panel controls">
+    <div class="control-row">
+      <button type="button" class="btn primary" id="upload-btn" data-i18n="upload">Upload</button>
+      <input type="file" id="file-input" accept="image/*" hidden />
+    </div>
+    <p class="hint" data-i18n="drawHint">Click and drag on the image to draw a box. Select a box and press Delete to remove it.</p>
+
+    <div class="control-row wrap">
+      <button type="button" class="btn" id="export-json" data-i18n="exportJson">Export JSON</button>
+      <button type="button" class="btn" id="export-csv" data-i18n="exportCsv">Export CSV</button>
+      <button type="button" class="btn" id="print-btn" data-i18n="exportPdf">Export PDF</button>
+      <label class="btn" id="import-json" data-i18n="importJson">Import JSON<input type="file" id="import-input" accept=".json,application/json" hidden />
+      </label>
+      <button type="button" class="btn" id="save-btn" data-i18n="save">Save</button>
+      <button type="button" class="btn" id="load-btn" data-i18n="load">Load</button>
+      <button type="button" class="btn danger" id="clear-btn" data-i18n="clear">Clear</button>
+      <button type="button" class="btn" id="delete-btn" data-i18n="deleteSel">Delete selected</button>
+    </div>
+    <div class="status" id="status" data-i18n="noImage">Upload an image to start.</div>
+  </section>
+
+  <div class="workspace">
+    <section class="panel canvas-panel">
+      <div id="canvas-wrap" class="canvas-wrap">
+        <img id="image" alt="Annotated image" />
+        <svg id="overlay" class="overlay" xmlns="http://www.w3.org/2000/svg">
+          <rect id="temp-rect" class="temp-rect" x="0" y="0" width="0" height="0" />
+        </svg>
+      </div>
+    </section>
+
+    <aside class="panel sidebar">
+      <h2 data-i18n="boxes">Boxes</h2>
+      <div id="box-list" class="box-list">
+        <p class="hint" data-i18n="noBoxes">No boxes yet.</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <span data-i18n="agree">By using this product you agree to the Privacy &amp; Policy.</span>
+    <a id="privacy-link" href="privacy.html" data-i18n="privacy">Privacy &amp; Policy</a>
+  </footer>
+</main>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
